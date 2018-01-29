@@ -1,0 +1,32 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "rules": {
+        "constructor-super": "warn",
+        "valid-typeof": "warn",
+        "arrow-parens": "off",
+        "no-shadow": "warn",
+        "semi": "warn",
+        "comma-dangle": "warn",
+        "space-before-function-paren": "off",
+        "no-return-assign": "off",
+        "no-confusing-arrow": "off"
+    },
+    // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
+    "extends": "standard",
+    // required to lint *.vue files
+    "plugins": [
+        "html"
+    ]
+}
+// http://eslint.org/docs/user-guide/configuring
