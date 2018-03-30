@@ -4,14 +4,14 @@
       <nav class="pull-left">
         <ul>
           <li>
-            <router-link :to="{path:'/admin'}">Dashboard</router-link>
+            <!-- <router-link :to="{path:'/admin'}">Dashboard</router-link> -->
           </li>
         </ul>
       </nav>
       <div class="copyright pull-right">
         &copy; Coded with
         <i class="fa fa-heart heart"></i> by
-        <a href="http://hannation.cn" target="_blank">Hannation Development Team</a>.
+        <a href="#" target="_blank">ICWT</a>.
       </div>
     </div>
   </footer>

@@ -52,11 +52,10 @@ new Vue({
   store,
   router,
   data: {
-    Chartist: Chartist
+    Chartist
   },
   watch: {
     user() {
-      console.log(this.user, 'important')
       this.$router.push('/')
     }
   },
@@ -68,7 +67,8 @@ new Vue({
       return this.$store.getters.isAuth
     }
   },
-  created() {
+  mounted() {
+    console.log('storage', localStorage.token)
     if (localStorage.token === undefined) {
       this.$router.push('/login')
     } else {

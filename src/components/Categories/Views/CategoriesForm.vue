@@ -3,18 +3,18 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
               <div class="header">
-                <h4 class="title">Category Form</h4>
+                <h4 class="title">Добавление услуги</h4>
               </div>
               <div class="content">
                 <form>
                   <ImageUplodaer
-                    title="Upload poster"
+                    title="Загрузить изображение"
                     uploading-text="Uploading..."
                     @uploadPoster="setPoster"
                     :poster="form.poster"
                   />
-                  
-                  <fg-input type="text"
+                  <fg-input 
+                    type="text"
                     v-for="(index, key) in fields"
                     :key="key"
                     :label="index.label"
@@ -23,23 +23,27 @@
                     :name="index.name"
                     :value="form[index.value]"
                   />
-                  <fg-select label="Parent"
+                  <fg-textarea 
+                    label="Описание услуги"
                     @changeValue="handleSetCategory"
-                    name="parentId"
-                    :selected="form.parentId"
-                    :options="parentCats"
-                  />
-                  <fg-select label="Type"
-                    @changeValue="handleSetCategory"
-                    name="type"
-                    :selected="form.type"
-                    :options="types"
+                    name="text"
+                    :value="form.text"
+                    placholder="Введите короткое описание услуги"
                   />
                   <div class="text-center">
-                    <button type="submit" class="btn btn-info btn-fill btn-wd" @click.prevent="submitForm">
-                      Submit
+                    <button 
+                      type="submit"
+                      class="btn btn-info btn-fill btn-wd" 
+                      @click.prevent="submitForm"
+                    >
+                      {{id ? 'Обновить' : 'Добавить'}}
                     </button>
-                    <router-link to="/categories/list" class="btn btn-danger btn-fill btn-wd">Back</router-link>
+                    <router-link 
+                      to="/categories/list" 
+                      class="btn btn-danger btn-fill btn-wd"
+                    >
+                      Назад
+                    </router-link>
                   </div>
                 </form>
               </div>

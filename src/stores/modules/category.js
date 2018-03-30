@@ -1,14 +1,16 @@
 import * as types from '../mutation-types'
-import { clientApi } from '../../helpers/clientApi'
+import {
+  clientApi,
+  clientApiPush,
+  clientApiPut
+} from '../../helpers/clientApi'
 import moment from 'moment'
 
 const state = {
   category: {
     poster: '',
     title: '',
-    titlecn: '',
-    icon: '',
-    parentId: 'none',
+    text: '',
     created_at: '',
     updated_at: ''
   },
@@ -74,11 +76,10 @@ const actions = {
     const currentDate = Date.now()
     const newCategory = {
       ...category,
-      icon: 'none',
       created_at: currentDate.toString(),
       updated_at: currentDate.toString()
     }
-    clientApi('post', 'categories', newCategory)
+    clientApiPush('settings', newCategory)
       .then((response) => {
         commit('ADD_CATEGORY', { newCategory })
         const payload = {
@@ -99,8 +100,11 @@ const actions = {
   updateCategory ({ commit, rootState }, { id }) {
     const { category } = rootState.category
     const currentDate = Date.now()
-    const newCategory = { ...category, updated_at: currentDate.toString() }
-    clientApi('put', `categories/${id}`, newCategory)
+    const newCategory = {
+      ...category,
+      updated_at: currentDate.toString()
+    }
+    clientApiPut(`settings/${id}`, newCategory)
       .then(response => {
         commit('UPDATE_CATEGORY', newCategory, id)
         const payload = {
@@ -138,42 +142,37 @@ const actions = {
       .catch(error => console.log(error))
   },
   fetchCategory ({ commit }, { id }) {
-    clientApi('get', `categories/single/${id}`)
+    clientApi(`settings/${id}`)
       .then(response => {
-        const data = response.data.foundCategory
-        const category = {
-          poster: data.poster,
-          title: data.title,
-          titlecn: data.titlecn,
-          icon: data.icon,
-          type: data.type,
-          parentId: data.parentId,
-          created_at: data.created_at,
-          updated_at: data.updated_at
-        }
+        const category = response.val()
         commit('SET_CATEGORY', category)
       })
       .catch(error => console.log(error))
   },
-  fetchCategories ({ commit, rootState }, { id }) {
-    clientApi('get', `categories/${id}`)
+  fetchCategories ({ commit, rootState }) {
+    clientApi('settings')
       .then((response) => {
-        const { data } = response
-        const categoriesData = Object.values(data.data)
-        categoriesData.splice(categoriesData.length - 1, 1)
-        const categories = categoriesData.map((item, index) => {
-          const cat = {
-            _id: item._id,
-            title: item.title,
-            titlecn: item.titlecn,
-            poster: item.poster,
-            icon: item.icon,
-            parent: item.parentId,
-            created_at: moment(item.created_at).format('YYYY-MM-DD'),
-            updated_at: moment(item.updated_at).format('YYYY-MM-DD')
+        let categories = []
+        const list = response.val()
+        for (let key in list) {
+          let value = list[key]
+          if (value) {
+            value._id = key
+            categories.push(value)
           }
-          return index !== 'postsCount' ? cat : ''
-        })
+        }
+        categories
+          .map((item, index) => {
+            const cat = {
+              _id: index,
+              title: item.title,
+              text: item.text,
+              poster: item.poster,
+              created_at: moment(String(item.created_at)).format('YYYY-MM-DD'),
+              updated_at: moment(String(item.updated_at)).format('YYYY-MM-DD')
+            }
+            return index !== 'postsCount' ? cat : ''
+          })
         commit('SET_CATEGORIES', categories)
       })
       .catch((error) => console.log(error))

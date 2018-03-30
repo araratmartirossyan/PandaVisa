@@ -4,17 +4,17 @@ const SidebarStore = {
   showSidebar: false,
   sidebarLinks: [
     {
-      name: 'Dashboard',
+      name: 'Статистика',
       icon: 'ti-panel',
       path: '/dashboard'
     },
     {
-      name: 'Categories',
+      name: 'Услуги',
       icon: 'ti-menu-alt',
       path: '/categories/list'
     },
     {
-      name: 'Users',
+      name: 'Пользователи',
       icon: 'ti-user',
       path: '/users/list'
     }

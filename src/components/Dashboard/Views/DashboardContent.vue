@@ -2,7 +2,7 @@
     <div class="row">
         <stats-view />
         <hr />
-        <charts-view />
+        <!-- <charts-view /> -->
     </div>
 </template>
 

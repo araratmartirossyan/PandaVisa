@@ -9,9 +9,17 @@ export const getUser = ({ commit, dispatch }) =>
     if (currentUser) {
       const user_uid = currentUser.uid
       commit('SET_LOGIN_USER_UID', user_uid)
-      const userRef = wilddog.sync().ref().child('users').child(user_uid)
+      const userRef = wilddog
+      .sync()
+      .ref()
+      .child('users')
+      .child(user_uid)
+      
       userRef.once('value').then(data => {
-        const userInfo = data.val()
+        const userInfo = {
+          ...data.val(),
+          uid: user_uid
+        }
         if (userInfo) {
           commit('USER', userInfo)
           commit('USER_LOGIN', true)
@@ -26,11 +34,11 @@ export const getUser = ({ commit, dispatch }) =>
     }
   })
 
-export const login = ({ commit, state, rootState }) => {
+export const login = ({ commit, state, rootState, dispatch }) => {
   const { email, password } = rootState.credentials
   wilddog.auth().signInWithEmailAndPassword(email, password).then((user) => {
     const userData = { ...user }
-    console.log(userData)
+    dispatch('getUser')
     commit('USER', userData)
     commit('USER_LOGIN', true)
   })

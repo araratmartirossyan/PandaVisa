@@ -14,8 +14,8 @@ export const loginModel = (state) => (!state.login ? state.loginModel : {})
 
 export const signupModel = (state) => (!state.login ? state.signupModel : {})
 
-export const isAdmin = state => (state.user.role === 999)
+// export const isAdmin = state => (state.user.role === 999)
 
-export const isUser = state => (state.user.role === 10)
+// export const isUser = state => (state.user.role === 10)
 
-export const isGuest = state => (state.user.role === 0)
+// export const isGuest = state => (state.user.role === 0)

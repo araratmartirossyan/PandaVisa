@@ -1,24 +1,12 @@
 const tableColumns = [
   {
-    title: 'Title',
+    title: 'Заголовок',
     field: 'title',
     isIcon: false,
     icon: ''
   },
   {
-    title: 'Icon',
-    field: 'icon',
-    isIcon: false,
-    icon: ''
-  },
-  {
-    title: 'Parent',
-    field: 'parentId',
-    isIcon: false,
-    icon: ''
-  },
-  {
-    title: 'Created at',
+    title: 'Создана',
     field: 'created_at',
     isIcon: false,
     icon: ''
@@ -29,7 +17,7 @@ const tableActions = [
   {
     tag: 'link',
     class: 'btn btn-info',
-    label: 'Edit',
+    label: 'Изменить',
     dynamic: false,
     to: '/categories/update',
     emit: ''
@@ -37,7 +25,7 @@ const tableActions = [
   {
     tag: 'button',
     class: 'btn btn-danger',
-    label: 'Delete',
+    label: 'Удалить',
     dynamic: false,
     to: '',
     emit: 'clickDelete'
@@ -59,23 +47,9 @@ const fields = [
   {
     name: 'title',
     label: '',
-    placeholder: 'Enter name',
+    placeholder: 'Введите название',
     onChange: 'handleSetCategory',
     value: 'title'
-  },
-  {
-    name: 'titlecn',
-    label: 'Name in chinese',
-    placeholder: 'Enter name in chinese',
-    onChange: 'handleSetCategory',
-    value: 'titlecn'
-  },
-  {
-    name: 'icon',
-    label: 'Category Icon',
-    placeholder: 'Enter icon name',
-    onChange: 'handleSetCategory',
-    value: 'icon'
   }
 ]
 

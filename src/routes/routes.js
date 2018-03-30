@@ -33,7 +33,7 @@ const routes = [
     children: [
       {
         path: '/dashboard',
-        name: 'dashboard',
+        name: 'Статистика и основная иформация',
         component: DashboardContent
       }
     ]
@@ -51,7 +51,7 @@ const routes = [
     children: [
       {
         path: 'list',
-        name: 'list',
+        name: 'Услуги',
         component: CategoriesList
       },
       {

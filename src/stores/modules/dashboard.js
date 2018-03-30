@@ -1,5 +1,5 @@
 import * as types from '../mutation-types'
-import { clientApi } from '../../helpers/clientApi'
+// import { clientApi } from '../../helpers/clientApi'
 import moment from 'moment'
 import { countBy } from 'ramda'
 
@@ -53,49 +53,49 @@ const mutations = {
 
 const actions = {
   fetchNewItems ({commit}, {from, key}) {
-    clientApi('get', `statistics/newItems/${from}`)
-      .then(response => {
-        const { count } = response.data
-        const payload = { key, value: count }
-        commit('SET_STATS', payload)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    // clientApi('get', `statistics/newItems/${from}`)
+    //   .then(response => {
+    //     const { count } = response.data
+    //     const payload = { key, value: count }
+    //     commit('SET_STATS', payload)
+    //   })
+    //   .catch(error => {
+    //     console.log(error)
+    //   })
   },
   fetchTotalItems ({commit}, {type, action, key}) {
-    clientApi('get', `statistics/totalItems/${type}/${action}`)
-      .then(response => {
-        const { count } = response.data
-        const payload = { key, value: count }
-        commit('SET_STATS', payload)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    // clientApi('get', `statistics/totalItems/${type}/${action}`)
+    //   .then(response => {
+    //     const { count } = response.data
+    //     const payload = { key, value: count }
+    //     commit('SET_STATS', payload)
+    //   })
+    //   .catch(error => {
+    //     console.log(error)
+    //   })
   },
   fetchChartData({commit}, {from, days}) {
-    clientApi('get', `statistics/chartItems/${from}/${days}`)
-      .then(response => {
-        const { data } = response
-        const { dates } = data
-        const payload = {days, dates}
-        commit('SET_CHART_DATA', payload)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    // clientApi('get', `statistics/chartItems/${from}/${days}`)
+    //   .then(response => {
+    //     const { data } = response
+    //     const { dates } = data
+    //     const payload = {days, dates}
+    //     commit('SET_CHART_DATA', payload)
+    //   })
+    //   .catch(error => {
+    //     console.log(error)
+    //   })
   },
   fetchFavouriteItem({commit}) {
-    clientApi('get', 'statistics/mostPopularItems')
-      .then(response => {
-        const { data } = response
-        const { favourite } = data
-        commit('SET_FAVOURITE_ITEM', favourite)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    // clientApi('get', 'statistics/mostPopularItems')
+    //   .then(response => {
+    //     const { data } = response
+    //     const { favourite } = data
+    //     commit('SET_FAVOURITE_ITEM', favourite)
+    //   })
+    //   .catch(error => {
+    //     console.log(error)
+    //   })
   }
 }
 

@@ -44,7 +44,7 @@
               :title="column.title"
             />
           </th>
-          <th>Actions</th>
+          <th>Действия</th>
         </thead>
         <tbody>
           <tr 
@@ -52,8 +52,9 @@
             :key="key">
             <td>{{ key + 1 }}</td>
             <td v-for="column in columns"
-              v-if="hasValue(item, column.field)">
-                {{itemValue(item, column.field)}}
+              v-if="hasValue(item, column.field)"
+            >
+              {{itemValue(item, column.field)}}
             </td>
             <td>
               <template v-for="action in actions">
@@ -61,20 +62,23 @@
                   v-if="action.tag === 'button' && action.dynamic"
                   type="button"
                   :class="action.class"
-                  @click="$emit(action.emit, item._id)">
+                  @click="$emit(action.emit, item._id)"
+                >
                   {{ buttonText(item) }}
                 </button>
                 <button 
                   v-if="action.tag === 'button' && !action.dynamic"
                   type="button"
                   :class="action.class"
-                  @click="$emit(action.emit, item._id)">
+                  @click="$emit(action.emit, item._id)"
+                >
                   {{ action.label }}
                 </button>
                 <router-link
                   v-if="action.tag === 'link'" 
                   :class="action.class"
-                  :to="`${action.to}/${item._id}`">
+                  :to="`${action.to}/${item._id}`"
+                >
                   {{ action.label }}
                 </router-link>
               </template>

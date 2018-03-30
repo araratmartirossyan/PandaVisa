@@ -25,6 +25,7 @@
   export default {
     name: 'app',
     mounted() {
+      this.$store.dispatch('getUser')
       if (localStorage.token) {
         const userData = JSON.parse(localStorage.getItem('userCreds'))
         this.$store.commit('USER', userData)

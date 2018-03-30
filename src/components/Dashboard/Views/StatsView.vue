@@ -1,49 +1,15 @@
 <template>
   <div class="col-md-12">
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-3 col-sm-6" v-for="(index, key) in stats">
       <stats-card>
-          <div class="icon-big text-center icon-success" slot="header">
-          <i class="ti-user"></i>
-          </div>
+        <div 
+          class="icon-big text-center icon-success" 
+          slot="header"
+        >
+          <i :class="[index.icon]" />
+        </div>
           <div class="numbers" slot="content">
-          <p>New Users</p>
-          {{newUsers}}
-          </div>
-      </stats-card>
-    </div>
-
-    <div class="col-lg-3 col-sm-6">
-      <stats-card>
-          <div class="icon-big text-center icon-success" slot="header">
-          <i class="ti-write"></i>
-          </div>
-          <div class="numbers" slot="content">
-          <p>New Cases</p>
-          {{newCases}}
-          </div>
-      </stats-card>
-    </div>
-
-    <div class="col-lg-3 col-sm-6">
-      <stats-card>
-          <div class="icon-big text-center icon-success" slot="header">
-          <i class="ti-share"></i>
-          </div>
-          <div class="numbers" slot="content">
-          <p>Shared Cases</p>
-          {{sharedCases}}
-          </div>
-      </stats-card>
-    </div>
-
-    <div class="col-lg-3 col-sm-6">
-      <stats-card>
-          <div class="icon-big text-center icon-success" slot="header">
-            <i class="ti-heart"></i>
-          </div>
-          <div class="numbers" slot="content">
-            <p>Hottest Category</p>
-            <small>{{ hottestCategory }}</small>
+            <p>{{index.name}}</p> 0
           </div>
       </stats-card>
     </div>
@@ -53,7 +19,9 @@
 <script>
   import StatsCard from '../../UIComponents/Cards/StatsCard.vue'
   import { mapState, mapActions } from 'vuex'
+  import { stats } from './stats.mock.js'
   export default {
+    data: () => ({ stats }),
     components: {
       StatsCard
     },

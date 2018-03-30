@@ -5,7 +5,7 @@
     :data-active-color="activeColor"
   >
     <div class="sidebar-wrapper" id="style-3">
-      <div class="logo">
+      <div class="logo" v-if="user">
         <a href="#" class="simple-text user-block">
           <div class="logo-img" :style="avatar()" />
           {{user.fullname}}
@@ -92,7 +92,11 @@
       }
     },
     methods: {
-      avatar() { return `background-image: url(${this.user.avatar}); background-size: cover;` },
+      avatar() {
+        if (this.user) {
+          return `background-image: url(${this.user.avatar}); background-size: cover;`
+        }
+      },
       findActiveLink () {
         this.sidebarLinks.find((element, index) => {
           let found = element.path === this.$route.path

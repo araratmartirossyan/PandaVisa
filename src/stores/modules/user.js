@@ -1,5 +1,6 @@
 import * as types from '../mutation-types'
 import { clientApi } from '../../helpers/clientApi'
+import { values } from 'ramda'
 
 const state = {
   users: [],
@@ -66,10 +67,11 @@ const mutations = {
 
 const actions = {
   fetchUsers ({commit, dispatch}) {
-    clientApi('get', 'statistics/getUsers')
+    clientApi('users')
       .then(response => {
-        const { users } = response.data
-        commit('SET_USERS', users)
+        const users = response.val()
+        console.log(users, 'important')
+        commit('SET_USERS', values(users))
       })
       .catch(error => {
         console.log(error)

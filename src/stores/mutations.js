@@ -1,6 +1,7 @@
 /* eslint-disable */
 
 import * as types from './mutation-types'
+import { pathOr } from 'ramda'
 
 export default {
   [types.USER_LOGIN](state, login) {
@@ -22,9 +23,12 @@ export default {
   },
   [types.USER](state, userData) {
     state.user = userData
-    state.loadingUser = false
-    let token = userData.token
-    window.localStorage.setItem('token', token)
+    const uid = pathOr(false, ['uid'], userData)
+    if (uid) {
+      state.loadingUser = false
+      let token = userData.uid
+      window.localStorage.setItem('token', token)
+    }
   },
   [types.LOADING_USER](state, loadingState) {
     state.loadingUser = loadingState
@@ -43,14 +47,6 @@ export default {
     state.signupModel = false
     state.user = {}
     localStorage.removeItem('token')
-  },
-
-  [types.SET_NEW_USER_AVATAR](state, { url }) {
-    if (url) {
-      let updatedUser = { ...state.user }
-      updatedUser.avatar = url
-      state.user = { ...updatedUser }
-    }
   },
   [types.LOGIN_ERROR](state, error) {
     state.loginError = error

@@ -42,7 +42,7 @@
             <a @click="logout" href="" class="btn-rotate">
               <i class="ti-share"></i>
               <p>
-                Log Out
+                Выйти
               </p>
             </a>
           </li>

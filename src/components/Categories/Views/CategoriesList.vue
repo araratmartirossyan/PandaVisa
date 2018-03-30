@@ -1,10 +1,17 @@
 <template>
   <div class="row">
    <div class="col-md-12">
-     <router-link class="btn btn-primary pull-right newUserButton" to="/categories/add">Add new Category</router-link>
+    <router-link 
+      class="btn btn-primary pull-right newUserButton" 
+      to="/categories/add"
+    >
+      Добавить новую услугу
+    </router-link>
    </div>
    <div class="col-md-12">
-     <alert :alert="alert"></alert>
+    <alert 
+      :alert="alert"
+    />
    </div>
    <div class="col-md-12">
       <div class="card">
@@ -34,8 +41,8 @@
         tableActions,
         tableColumns,
         table: {
-          title: 'Categories List',
-          subTitle: 'All categories in website',
+          title: 'Список услуг',
+          subTitle: 'Список доступных услуг в приложении',
           columns: [...tableColumns],
           actions: [...tableActions],
           data: []
@@ -43,7 +50,7 @@
       }
     },
     mounted() {
-      this.fetchCategories({ id: this.user.id })
+      this.fetchCategories()
     },
     watch: {
       categories (value) {
