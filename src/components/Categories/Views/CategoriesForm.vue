@@ -26,9 +26,16 @@
                   <fg-textarea 
                     label="Описание услуги"
                     @changeValue="handleSetCategory"
-                    name="text"
-                    :value="form.text"
+                    name="description"
+                    :value="form.description"
                     placholder="Введите короткое описание услуги"
+                  />
+                  <fg-select
+                    label="Выберите дополнительную услугу"
+                    @changeValue="handleSetCategory"
+                    name="linkedId"
+                    :selected="form.linkedId"
+                    :options="categories"
                   />
                   <div class="text-center">
                     <button 
@@ -75,17 +82,13 @@ export default {
   computed: {
     ...mapState({
       form: state => state.category.category,
-      parentCats: state => state.category.parentCats
+      categories: state => state.category.categories
     })
   },
   methods: {
     submitForm () {
       const id = this.id ? this.id : ''
-      if (id) {
-        this.updateCategory({ id })
-      } else {
-        this.createCategory()
-      }
+      id ? this.updateCategory({ id }) : this.createCategory()
       this.$router.push('/categories/list')
     },
     ...mapActions({
@@ -99,6 +102,7 @@ export default {
       setPoster: 'SET_POSTER'
     }),
     handleSetCategory(value, name) {
+      console.log(value, name)
       const payload = {
         key: name,
         value

@@ -24,6 +24,8 @@ import CategoriesForm from 'src/components/Categories/Views/CategoriesForm.vue'
 import UsersList from 'src/components/Users/Views/UsersList.vue'
 import AddUser from 'src/components/Users/Views/AddUser.vue'
 
+import Lids from 'src/components/Lids/Views/Lids.vue'
+
 const routes = [
   {
     path: '/',
@@ -74,13 +76,26 @@ const routes = [
     children: [
       {
         path: 'list',
-        name: 'list',
+        name: 'Список пользователей',
         component: UsersList
       },
       {
         path: 'add',
-        name: 'add',
+        name: 'add User',
         component: AddUser
+      }
+    ]
+  },
+  {
+    path: '/lids',
+    component: DashboardLayout,
+    redirect: '/lids/list',
+    meta: { mustAuth: true },
+    children: [
+      {
+        path: 'list',
+        name: 'Список заявок',
+        component: Lids
       }
     ]
   },

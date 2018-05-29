@@ -55,7 +55,7 @@
   export default {
     computed: {
       routeName () {
-        const {name} = this.$route
+        const { name } = this.$route
         return this.capitalizeFirstLetter(name)
       }
     },

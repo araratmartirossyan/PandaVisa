@@ -2,7 +2,8 @@ import * as types from '../mutation-types'
 import {
   clientApi,
   clientApiPush,
-  clientApiPut
+  clientApiPut,
+  clientApiDelete
 } from '../../helpers/clientApi'
 import moment from 'moment'
 
@@ -12,7 +13,8 @@ const state = {
     title: '',
     text: '',
     created_at: '',
-    updated_at: ''
+    updated_at: '',
+    linkedId: ''
   },
   categories: [],
   parentCats: []
@@ -31,6 +33,7 @@ const mutations = {
     state.category.poster = poster
   },
   [types.UPDATE_CATEGORY_FORM](sub, payload) {
+    console.log(sub, payload)
     state.category[payload.key] = payload.value
   },
   [types.SET_CATEGORIES](sub, categories) {
@@ -123,12 +126,13 @@ const actions = {
       .catch(error => console.log(error))
   },
   removeCategory ({ commit }, { id }) {
-    clientApi('delete', `categories/${id}`)
+    console.log(id, 'important')
+    clientApiDelete(`settings/${id}`)
       .then(response => {
         commit('REMOVE_CATEGORY', id)
         const payload = {
           type: 'success',
-          msg: 'Category deleted',
+          msg: 'Услуга удалена',
           auto: true
         }
         commit('SET_ALERT', payload)
@@ -158,6 +162,7 @@ const actions = {
           let value = list[key]
           if (value) {
             value._id = key
+            value.name = value.title
             categories.push(value)
           }
         }

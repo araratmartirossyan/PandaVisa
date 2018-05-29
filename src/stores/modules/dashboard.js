@@ -15,7 +15,7 @@ const state = {
 }
 
 const getters = {
-  getItemsStats: (stat) => state[stat]
+  getItemsStats: stat => state[stat]
 }
 
 const mutations = {

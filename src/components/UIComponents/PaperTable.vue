@@ -11,7 +11,8 @@
         <div 
           class="col-md-3" 
           v-for="(filter, key) in filters"
-          :key="key">
+          :key="key"
+        >
           <select 
             class="form-control"
             :placeholder="filter.label"
@@ -34,7 +35,7 @@
       <table class="table" :class="tableClass">
         <thead>
           <th>#</th>
-          <th v-for="column in columns">
+          <th v-for="(column, key) in columns" :key="key">
             <span v-if="!column.isIcon">{{column.title}}</span>
             <span 
               v-if="column.isIcon" 
@@ -49,16 +50,20 @@
         <tbody>
           <tr 
             v-for="(item, key) in filtered"
-            :key="key">
+            :key="key"
+          >
             <td>{{ key + 1 }}</td>
-            <td v-for="column in columns"
+            <td
+              v-for="(column, key) in columns"
+              :key="key"
               v-if="hasValue(item, column.field)"
             >
-              {{itemValue(item, column.field)}}
+              {{item[column.field] || '-'}}
             </td>
             <td>
-              <template v-for="action in actions">
+              <template v-for="(action, key) in actions" >
                 <button 
+                  :key="key"
                   v-if="action.tag === 'button' && action.dynamic"
                   type="button"
                   :class="action.class"
@@ -67,6 +72,7 @@
                   {{ buttonText(item) }}
                 </button>
                 <button 
+                  :key="key"
                   v-if="action.tag === 'button' && !action.dynamic"
                   type="button"
                   :class="action.class"
@@ -75,6 +81,7 @@
                   {{ action.label }}
                 </button>
                 <router-link
+                  :key="key"
                   v-if="action.tag === 'link'" 
                   :class="action.class"
                   :to="`${action.to}/${item._id}`"
@@ -98,7 +105,10 @@
     },
     props: {
       columns: Array,
-      actions: Array,
+      actions: {
+        type: Array,
+        default: []
+      },
       filters: Array,
       data: Array,
       type: {

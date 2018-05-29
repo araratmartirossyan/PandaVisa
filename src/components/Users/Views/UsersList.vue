@@ -1,52 +1,18 @@
 <template>
     <div class="row">
-        <div class="col-md-12">
-          <router-link 
-            class="btn btn-primary pull-right newUserButton" 
-            to="/users/add"
-          >
-            Add new Admin
-          </router-link>
-       </div>
-       <div class="col-md-12">
-          <div class="header">
-            <div class="row">
-              <div 
-                class="col-md-3" 
-                v-for="(filter, key) in tableFilters"
-                :key="key">
-                <select 
-                  class="form-control"
-                  :placeholder="filter.label"
-                  @change="selectFilter($event.target.value)">
-                  <option 
-                    :label="filter.label" 
-                    value="" 
-                  />
-                  <option 
-                    v-for="(option, key) in filter.options"
-                    :key="option.key"
-                    :label="option.key"
-                    :value="option.value"
-                  />
-                </select>
-              </div>
-            </div>
-          </div>
+      <div class="col-md-12">
+        <div class="card">
+          <paper-table 
+            :title="table.title"
+            :subTitle="table.subTitle"
+            :data="users"
+            :columns="table.columns"
+            :actions="table.actions"
+            @clickSuspend="clickSuspendHandle"
+            @clickDelete="clickDeleteHandle"
+          />
         </div>
-        <div class="col-md-12">
-          <div class="card">
-            <paper-table 
-              :title="table.title"
-              :subTitle="table.subTitle"
-              :data="users"
-              :columns="table.columns"
-              :actions="table.actions"
-              @clickSuspend="clickSuspendHandle"
-              @clickDelete="clickDeleteHandle"
-            />
-          </div>
-        </div>
+      </div>
     </div>
 </template>
 
@@ -64,8 +30,8 @@
           tableActions,
           tableFilters,
           table: {
-            title: 'Users List',
-            subTitle: 'All users in website',
+            title: 'Список пользователей',
+            subTitle: 'Список пользователей которые вошли в приложение',
             columns: [...tableColumns],
             actions: [...tableActions],
             filters: [...tableFilters],

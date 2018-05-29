@@ -17,12 +17,12 @@ const SidebarStore = {
       name: 'Пользователи',
       icon: 'ti-user',
       path: '/users/list'
+    },
+    {
+      name: 'Заявки',
+      icon: 'ti-eye',
+      path: '/lids/list'
     }
-    // {
-    //   name: 'Admin Roles',
-    //   icon: 'ti-eye',
-    //   path: '/admins/list'
-    // }
   ],
   displaySidebar (value) {
     this.showSidebar = value

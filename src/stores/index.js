@@ -7,6 +7,7 @@ import * as actions from './actions'
 import category from './modules/category'
 import users from './modules/user'
 import dashboard from './modules/dashboard'
+import lids from './modules/lids'
 
 Vue.use(Vuex)
 
@@ -17,7 +18,8 @@ export default new Vuex.Store({
   modules: {
     category,
     users,
-    dashboard
+    dashboard,
+    lids
   },
   actions,
   strict: true

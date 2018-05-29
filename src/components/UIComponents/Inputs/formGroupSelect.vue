@@ -7,9 +7,17 @@
       v-bind="$attrs"
       :name="name"
       @change="$emit('changeValue', $event.target.value, name)"
-      v-on="$listeners">
-      <option value="none">Select {{ label }}</option>
-      <option v-for="(option, key) in options" :key="key" :value="option.value" :selected="selected === option.value">{{ option.name }}</option>
+      v-on="$listeners"
+    >
+      <option value="none"> {{ label }}</option>
+      <option
+        v-for="(option, key) in options"
+        :key="key"
+        :value="option._id"
+        :selected="selected === option.value"
+      >
+        {{ option.name }}
+      </option>
     </select>
   </div>
 </template>

@@ -1,17 +1,7 @@
 <template>
   <div class="row">
    <div class="col-md-12">
-    <router-link 
-      class="btn btn-primary pull-right newUserButton" 
-      to="/categories/add"
-    >
-      Добавить новую услугу
-    </router-link>
-   </div>
-   <div class="col-md-12">
-    <alert 
-      :alert="alert"
-    />
+    <alert :alert="alert" />
    </div>
    <div class="col-md-12">
       <div class="card">
@@ -21,7 +11,8 @@
           :data="table.data" 
           :columns="table.columns"
           :actions="table.actions"
-          @clickDelete="deleteCategoryHandle"
+          @clickDelete="handleDeleteLid"
+          @clickUpdate="handleUpdateLid"
         />
       </div>
     </div>
@@ -32,29 +23,27 @@
   import { mapGetters, mapActions, mapState } from 'vuex'
   import { tableColumns, tableActions } from './TableMock.js'
   import PaperTable from 'components/UIComponents/PaperTable.vue'
-
   export default {
     components: {
       PaperTable
     },
-    data () {
-      return {
+    data: () =>
+      ({
         tableActions,
         tableColumns,
         table: {
-          title: 'Список услуг',
-          subTitle: 'Список доступных услуг в приложении',
+          title: 'Список заявок',
+          subTitle: 'Список заявок полученных в приложении',
           columns: [...tableColumns],
           actions: [...tableActions],
           data: []
         }
-      }
-    },
+      }),
     mounted() {
-      this.fetchCategories()
+      this.fetchLids()
     },
     watch: {
-      categories (value) {
+      lids(value) {
         if (value) {
           this.table.data = [...value]
         }
@@ -62,7 +51,7 @@
     },
     computed: {
       ...mapGetters({
-        categories: 'getCategories'
+        lids: 'getLids'
       }),
       ...mapState({
         alert: state => state.alert,
@@ -71,12 +60,12 @@
     },
     methods: {
       deleteCategoryHandle (value) {
-        const id = value
-        this.removeCategory({ id })
+        this.removeCategory({ id: value })
       },
       ...mapActions({
-        fetchCategories: 'fetchCategories',
-        removeCategory: 'removeCategory'
+        fetchLids: 'fetchLids',
+        handleDeleteLid: 'removeLid',
+        handleUpdateLid: 'updateLid'
       })
     }
   }
