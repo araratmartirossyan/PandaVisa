@@ -22,6 +22,11 @@ const SidebarStore = {
       name: 'Заявки',
       icon: 'ti-eye',
       path: '/lids/list'
+    },
+    {
+      name: 'Контроль валют',
+      icon: 'ti-money',
+      path: '/currency/data'
     }
   ],
   displaySidebar (value) {

@@ -1,10 +1,6 @@
 import DashboardLayout from '../components/Dashboard/Layout/DashboardLayout.vue'
 import LoginLayout from '../components/Dashboard/Layout/Login.vue'
-
-// GeneralViews
 import NotFound from '../components/GeneralViews/NotFoundPage.vue'
-
-// Admin pages
 import Overview from 'src/components/Dashboard/Views/Overview.vue'
 import UserProfile from 'src/components/Dashboard/Views/UserProfile.vue'
 import Notifications from 'src/components/Dashboard/Views/Notifications.vue'
@@ -12,18 +8,13 @@ import Icons from 'src/components/Dashboard/Views/Icons.vue'
 import Maps from 'src/components/Dashboard/Views/Maps.vue'
 import Typography from 'src/components/Dashboard/Views/Typography.vue'
 import TableList from 'src/components/Dashboard/Views/TableList.vue'
-
-// Dashboard
 import DashboardContent from 'src/components/Dashboard/Views/DashboardContent.vue'
-
-// Categories Pages
 import CategoriesList from 'src/components/Categories/Views/CategoriesList.vue'
 import CategoriesForm from 'src/components/Categories/Views/CategoriesForm.vue'
-
-// Users list
 import UsersList from 'src/components/Users/Views/UsersList.vue'
 import AddUser from 'src/components/Users/Views/AddUser.vue'
 
+import CurrencyControl from 'src/components/CurrencyControl/CurrencyControl.vue'
 import Lids from 'src/components/Lids/Views/Lids.vue'
 
 const routes = [
@@ -44,6 +35,19 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginLayout
+  },
+  {
+    path: '/currency',
+    component: DashboardLayout,
+    redirect: '/currency/data',
+    media: { mustAuth: true },
+    children: [
+      {
+        path: 'data',
+        name: 'Контроль Валют',
+        component: CurrencyControl
+      }
+    ]
   },
   {
     path: '/categories',
@@ -144,14 +148,5 @@ const routes = [
   },
   { path: '*', component: NotFound }
 ]
-
-/**
- * Asynchronously load view (Webpack Lazy loading compatible)
- * The specified component must be inside the Views folder
- * @param  {string} name  the filename (basename) of the view to load.
-function view(name) {
-   var res= require('../components/Dashboard/Views/' + name + '.vue');
-   return res;
-};**/
 
 export default routes

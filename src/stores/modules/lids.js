@@ -43,7 +43,6 @@ const actions = {
           msg: 'Category updated',
           auto: true
         }
-        console.log('do it')
         commit('SET_ALERT', payload)
         commit('DISPLAY_ALERT')
         setTimeout(() => {
@@ -53,10 +52,11 @@ const actions = {
       })
       .catch(error => console.log(error))
   },
-  removeLid({ commit }, id) {
+  removeLid({ commit, dispatch }, id) {
     clientApiDelete(`lids/${id}`)
       .then(response => {
         commit('REMOVE_CATEGORY', id)
+        dispatch('fetchLids')
         const payload = {
           type: 'success',
           msg: 'Услуга удалена',
@@ -73,7 +73,6 @@ const actions = {
       .catch(error => console.log(error))
   },
   fetchLids({ commit, rootState }) {
-    console.log('fetch')
     clientApi('lids')
       .then(response => {
         let lids = []

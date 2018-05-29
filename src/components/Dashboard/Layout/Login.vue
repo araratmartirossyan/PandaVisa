@@ -2,7 +2,7 @@
   <div class="login">
     <div class="card">
       <div class="header">
-        <h4 class="title">Login</h4>
+        <h4 class="title">Вход для админов</h4>
       </div>
       <div class="content">
         <form>
@@ -10,9 +10,9 @@
             <div class="col-md-12">
               <fg-input 
                 type="email"
-                label="Email"
+                label="Почта"
                 name="email"
-                placeholder="Email"
+                placeholder="Почта"
                 :value="credentials.email"
                 @changeValue="handleUpdateCreds"
               />
@@ -22,9 +22,9 @@
             <div class="col-md-12">
               <fg-input 
                 type="password"
-                label="Password"
+                label="Пароль"
                 name="password"
-                placeholder="Password"
+                placeholder="Пароль"
                 :value="credentials.password"
                 @changeValue="handleUpdateCreds"
               />
@@ -35,7 +35,7 @@
           </p>
           <div class="text-center">
             <button type="submit" class="btn btn-info btn-fill btn-wd" @click.prevent="handleSubmit">
-              Login
+              Войти
             </button>
           </div>
           <div class="clearfix"></div>

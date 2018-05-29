@@ -27,7 +27,7 @@ const tableColumns = [
     title: 'Проверено',
     field: 'isVerified',
     isIcon: false,
-    icon: ''
+    icon: 'ti-check'
   }
 ]
 

@@ -8,6 +8,7 @@ import category from './modules/category'
 import users from './modules/user'
 import dashboard from './modules/dashboard'
 import lids from './modules/lids'
+import currency from './modules/currency.js'
 
 Vue.use(Vuex)
 
@@ -19,7 +20,8 @@ export default new Vuex.Store({
     category,
     users,
     dashboard,
-    lids
+    lids,
+    currency
   },
   actions,
   strict: true
